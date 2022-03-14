@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class LockedMe {
 	
-	public final static String path = "D:\\Phase-1 Project\\Files";
+	public final static String path = "D:\\Phase-1_Project\\Files";
 	
 	
 	/**
@@ -38,35 +38,43 @@ public class LockedMe {
 	
 	public static void retrieveAllFiles() {
 		File file = new File(path);
-		List<String> list = Arrays.asList(file.list());
-		Collections.sort(list);
-		for(String v : list) {
-			System.out.println(v);
+		if(file.exists()) {
+			List<String> list = Arrays.asList(file.list());
+			Collections.sort(list);
+			for(String v : list) {
+				System.out.println(v);
+			}
 		}
-
+		else {
+			System.out.println("No file exit.");
+		}
+      
 	}
 
-	public static void fileOperations() {
+	public static void fileOperations(Scanner scan) {
+		//Scanner scan = new Scanner(System.in);
 		boolean run = true ;
 		do {
-			Scanner scan = new Scanner(System.in);
-			System.out.println("Choose operation need to perform from below options");
-			System.out.println("===================================================");
-			System.out.println("1. Add file");
-			System.out.println("2. Delete file");
-			System.out.println("3. Search file");
-			System.out.println("4. Return to main menu");
-			System.out.println("===================================================");
-			int choice = Integer.parseInt(scan.nextLine());	
-			switch(choice) {
-			case 1 -> FileOperations.addFile();
-			case 2 -> FileOperations.deleteFile();
-			case 3 -> FileOperations.searchFile();
-			case 4 -> run = false;		
-			default -> System.out.println("Invalid input");
+			try {
+				System.out.println("Choose operation need to perform from below options");
+				System.out.println("===================================================");
+				System.out.println("1. Add file");
+				System.out.println("2. Delete file");
+				System.out.println("3. Search file");
+				System.out.println("4. Return to main menu");
+				System.out.println("===================================================");
+				int choice = Integer.parseInt(scan.nextLine());	
+				switch(choice) {
+				case 1 -> FileOperations.addFile();
+				case 2 -> FileOperations.deleteFile();
+				case 3 -> FileOperations.searchFile();
+				case 4 -> run = false;		
+				default -> System.out.println("Invalid input");
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
 			}
 		}while(run == true);
-
 	}
 	
 	/**

@@ -1,7 +1,21 @@
 package com.Lockers.LockedMe;
 
 import java.util.Scanner;
-
+/**
+ * Class Name: ClientApp
+ * This contain main of application
+ * Inside class
+ * Method Name: main
+ * Inside method:
+ * 1. Display welcome screen and main menu
+ * 2. Take input from user form menu options
+ * 3. Perform action according to user input
+ *    a.retrive all file
+ *    b.file operations
+ *    c.exit
+ * @author manvendra
+ *
+ */
 public class ClientApp {
 
 	public static void main(String[] args) {
@@ -23,7 +37,7 @@ public class ClientApp {
 					// Checking user input and perform action accordingly
 					switch(choice) {
 					case 1  -> LockedMe.retrieveAllFiles();
-					case 2  -> LockedMe.fileOperations();
+					case 2  -> LockedMe.fileOperations(scan);
 					case 3  -> LockedMe.exit();
 					default -> System.out.println("Invalid input");
 					}	
@@ -32,7 +46,7 @@ public class ClientApp {
 		} 
 		
 		catch (Exception e) {
-			System.out.println("Error occur contact administrator");
+			System.out.println(e.getMessage());
 		}
 
 	}
