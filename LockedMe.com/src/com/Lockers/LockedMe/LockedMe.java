@@ -72,7 +72,7 @@ public class LockedMe {
 				default -> System.out.println("Invalid input");
 				}
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				System.out.println("Invalid input");
 			}
 		}while(run == true);
 	}

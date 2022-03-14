@@ -18,12 +18,12 @@ import java.util.Scanner;
  *
  */
 public class FileOperations {
-	
+
 	// variable declaration
 	static Scanner scan = new Scanner(System.in);
 	public final static String path = "D:\\Phase-1_Project\\Files";
-	
-	
+
+
 	/**
 	 * Method Name: addFile()
 	 * This function is used to add user defined file in directory
@@ -34,8 +34,8 @@ public class FileOperations {
 	 *  4.write user provide lines in file
 	 */
 	public static void addFile(){
-		 File file = new File(path);
-		 List<String> list = Arrays.asList(file.list());
+		File file = new File(path);
+		List<String> list = Arrays.asList(file.list());
 		System.out.println("Enter name for file");
 		String fileName = scan.nextLine();
 		if(!(list.contains(fileName+".txt"))) {
@@ -51,15 +51,15 @@ public class FileOperations {
 				fr.close();
 			} 
 			catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("Invalid Input");
 			}
 			System.out.println("File added successfully.\n");
 		}
 		else
 			System.out.println("file name already exits in directory.");
-		
+
 	}
-	
+
 	/**
 	 * Method Name: deleteFile()
 	 * this method is used to delete file exist in main directory
@@ -72,18 +72,24 @@ public class FileOperations {
 		File file = new File(path);
 		List<String> list = Arrays.asList(file.list());
 		System.out.println("Enter name of file need to delete");
-		String fileName = scan.nextLine()+".txt";
-		if((list.contains(fileName))) {
-			File filedelete = new File(path+"\\"+fileName);
-			filedelete.delete();
-			System.out.println(filedelete.getName()+" is deleted successfully\n");
+		try {
+			String fileName = scan.nextLine()+".txt";
+			if((list.contains(fileName))) {
+				File filedelete = new File(path+"\\"+fileName);
+				filedelete.delete();
+				System.out.println(filedelete.getName()+" is deleted successfully\n");
+			}
+			else
+			{
+				System.out.println("File not found");
+			}
 		}
-		else
-		{
-			System.out.println("File not found");
+		catch(Exception e) {
+			System.out.println("Invalid Input");
 		}
-		}
-	
+
+	}
+
 	/**
 	 * Method Name: searchFile()
 	 * This method is used to search file from main directory
@@ -92,17 +98,22 @@ public class FileOperations {
 	 *  2. Check if file exist show file path otherwise show message 'file not found"
 	 */
 	public static void searchFile(){
-		 File file = new File(path);
+		File file = new File(path);
 		List<String> list = Arrays.asList(file.list());
 		System.out.println("Enter name of file need to search");
-		String fileName = scan.nextLine();
-		if(list.contains(fileName+".txt")) {
-			System.out.println("File exit at "+file.getAbsolutePath()+"\\"+fileName+".txt");
+		try {
+			String fileName = scan.nextLine();
+			if(list.contains(fileName+".txt")) {
+				System.out.println("File exit at "+file.getAbsolutePath()+"\\"+fileName+".txt");
+			}
+			else
+			{
+				System.out.println("file not found");
+			}
+		}	
+		catch(Exception e) {
+			System.out.println("Invalid input");
 		}
-		else
-		{
-			System.out.println("file not found");
-		}
-		
+
 	}
 }
